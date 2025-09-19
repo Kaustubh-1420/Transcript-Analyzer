@@ -4,12 +4,7 @@ import os
 CSV_FILE = "call_analysis.csv"
 
 def save_to_csv(transcript: str, summary: str, sentiment: str):
-    """
-    Saves results into call_analysis.csv with columns:
-    Transcript | Summary | Sentiment
-    Appends new rows if file already exists.
-    """
-
+    
     row = {
         "Transcript": transcript,
         "Summary": summary,

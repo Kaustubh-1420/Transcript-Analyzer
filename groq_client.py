@@ -17,10 +17,6 @@ GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 MODEL = "llama-3.1-8b-instant"  
 
 def analyze_transcript(transcript: str):
-    """
-    Sends transcript to Groq API and returns (summary, sentiment).
-    Sentiment includes both emotion + polarity (e.g. 'Frustrated/Negative').
-    """
 
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY}",
