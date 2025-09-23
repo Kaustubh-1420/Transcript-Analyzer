@@ -1,24 +1,22 @@
+import streamlit as st
 from groq_client import analyze_transcript
 from save_csv import save_to_csv
 
-def main():
-    print("Mini Tech Challenge — Transcript Analyzer")
-    transcript = input("Enter transcript: ").strip()
+st.title("Mini Tech Challenge — Transcript Analyzer")
 
-    if not transcript:
-        print("No transcript entered. Exiting.")
-        return
+transcript = st.text_area("Enter transcript:")
 
-    print("\n Analyzing transcript...")
-    summary, sentiment = analyze_transcript(transcript)
+if st.button("Analyze"):
+    if not transcript.strip():
+        st.warning("Please enter a transcript before analyzing.")
+    else:
+        st.info("Analyzing transcript...")
+        summary, sentiment = analyze_transcript(transcript)
 
-    print("\n=== Analysis Results ===")
-    print("Transcript:", transcript)
-    print("Summary:", summary)
-    print("Sentiment:", sentiment)
+        st.subheader("Analysis Results")
+        st.write("**Transcript:**", transcript)
+        st.write("**Summary:**", summary)
+        st.write("**Sentiment:**", sentiment)
 
-    save_to_csv(transcript, summary, sentiment)
-
-
-if __name__ == "__main__":
-    main()
+        save_to_csv(transcript, summary, sentiment)
+        st.success("Results saved to CSV successfully!")
